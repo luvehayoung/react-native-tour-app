@@ -30,6 +30,8 @@ target 'navigation_login' do
 
   pod 'react-native-ccs-naver-login', :path => '../node_modules/react-native-ccs-naver-login'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   target 'navigation_loginTests' do
     inherit! :search_paths
     # Pods for testing
