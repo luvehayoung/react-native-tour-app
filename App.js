@@ -10,7 +10,6 @@ import Tourplace_detail from './app/components/Tourplace_search/Tourplace_detail
 import Browse_Tour_detail from './app/components/MyTour/Browse_Tour_detail'
 import Browse_Tour_All from './app/components/MyTour/Browse_Tour_All'
 import New_Tour_Main from './app/components/MyTour/New_Tour/New_Tour_Main'
-import New_Tour_Map from './app/components/MyTour/New_Tour/New_Tour_Map'
 import New_Tour_daily_detail from './app/components/MyTour/New_Tour/New_Tour_daily_detail'
 
 /*
@@ -44,7 +43,6 @@ const AppNavigator = createStackNavigator({
   browse_tour:Browse_Tour_All,
   browse_tour_detail:Browse_Tour_detail,
   new_tour: New_Tour_Main,
-  new_map: New_Tour_Map,
   put_picture: New_Tour_daily_detail,
   /*
   screen: HomeScreen,
