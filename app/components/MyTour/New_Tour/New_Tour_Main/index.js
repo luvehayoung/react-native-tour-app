@@ -14,7 +14,6 @@ class New_Tour_Main extends React.Component {
     state ={
       photo: [],
       picture_num: null,
-      pictures: null,
     }
 
     handleChoosePhoto = () =>{
@@ -56,26 +55,35 @@ class New_Tour_Main extends React.Component {
     }
 
 
-
   picture_detail(){
+    //New_Tour_daily_detail
     this.props.navigation.navigate('put_picture');
   }
+
+  picture_map(){
+    //New_Tour_daily_detail
+    this.props.navigation.navigate('new_map', {'photo': this.state.photo});
+
+
+
+  }
+
+
   back_to_home(){
+    console.log("result: ", this.state.photo )
     this.props.navigation.navigate('home');
 
   }
 
   render() {
-    const itemId = this.props.navigation.getParam('email');
+    //const itemId = this.props.navigation.getParam('email');
     const { heading, input, parent } = styles
 
     const {photo} = this.state
     return (
         <ScrollView>
             <Text>내 여행 등록하는 페이지 - 다이어그램에서 내여행사진 등록하기 전체</Text>
-            <View>
-              <Text>itemId: {JSON.stringify(itemId)}</Text>
-            </View>
+
             <Button
               title = "choose photo"
               onPress = {this.handleChoosePhoto}
@@ -84,94 +92,117 @@ class New_Tour_Main extends React.Component {
             <View>
 
             {photo[0] && (
-              <Image
-              source={{isStatic:true, uri: 'file://' + photo[0]['path']}}
-              style = {{width:300, height: 300}}
-              />
+              <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Image
+                source={{isStatic:true, uri: 'file://' + photo[0]['path']}}
+                style = {{width:300, height: 300}}
+                />
+              </TouchableOpacity>
             )}
 
             {photo[1] && (
-              <Image
-              source={{isStatic:true, uri: 'file://' + photo[1]['path']}}
-              style = {{width:300, height: 300}}
-              />
+              <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Image
+                source={{isStatic:true, uri: 'file://' + photo[1]['path']}}
+                style = {{width:300, height: 300}}
+                />
+              </TouchableOpacity>
             )}
 
             {photo[2] && (
-              <Image
-              source={{isStatic:true, uri: 'file://' + photo[2]['path']}}
-              style = {{width:300, height: 300}}
-              />
+              <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Image
+                source={{isStatic:true, uri: 'file://' + photo[2]['path']}}
+                style = {{width:300, height: 300}}
+                />
+              </TouchableOpacity>
             )}
 
             {photo[3] && (
-              <Image
-              source={{isStatic:true, uri: 'file://' + photo[3]['path']}}
-              style = {{width:300, height: 300}}
-              />
+              <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Image
+                source={{isStatic:true, uri: 'file://' + photo[3]['path']}}
+                style = {{width:300, height: 300}}
+                />
+              </TouchableOpacity>
             )}
 
             {photo[4] && (
-              <Image
-              source={{isStatic:true, uri: 'file://' + photo[4]['path']}}
-              style = {{width:300, height: 300}}
-              />
+              <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Image
+                source={{isStatic:true, uri: 'file://' + photo[4]['path']}}
+                style = {{width:300, height: 300}}
+                />
+              </TouchableOpacity>
             )}
 
             {photo[5] && (
-              <Image
-              source={{isStatic:true, uri: 'file://' + photo[5]['path']}}
-              style = {{width:300, height: 300}}
-              />
+              <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Image
+                source={{isStatic:true, uri: 'file://' + photo[5]['path']}}
+                style = {{width:300, height: 300}}
+                />
+              </TouchableOpacity>
             )}
 
             {photo[6] && (
-              <Image
-              source={{isStatic:true, uri: 'file://' + photo[6]['path']}}
-              style = {{width:300, height: 300}}
-              />
+              <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Image
+                source={{isStatic:true, uri: 'file://' + photo[6]['path']}}
+                style = {{width:300, height: 300}}
+                />
+              </TouchableOpacity>
             )}
 
             {photo[7] && (
-              <Image
-              source={{isStatic:true, uri: 'file://' + photo[7]['path']}}
-              style = {{width:300, height: 300}}
-              />
+              <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Image
+                source={{isStatic:true, uri: 'file://' + photo[7]['path']}}
+                style = {{width:300, height: 300}}
+                />
+              </TouchableOpacity>
             )}
 
             {photo[8] && (
-              <Image
-              source={{isStatic:true, uri: 'file://' + photo[8]['path']}}
-              style = {{width:300, height: 300}}
-              />
+              <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Image
+                source={{isStatic:true, uri: 'file://' + photo[8]['path']}}
+                style = {{width:300, height: 300}}
+                />
+              </TouchableOpacity>
             )}
 
             {photo[9] && (
-              <Image
-              source={{isStatic:true, uri: 'file://' + photo[9]['path']}}
-              style = {{width:300, height: 300}}
-              />
+              <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Image
+                source={{isStatic:true, uri: 'file://' + photo[9]['path']}}
+                style = {{width:300, height: 300}}
+                />
+              </TouchableOpacity>
             )}
 
             {photo[10] && (
-              <Image
-              source={{isStatic:true, uri: 'file://' + photo[10]['path']}}
-              style = {{width:300, height: 300}}
-              />
+              <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Image
+                source={{isStatic:true, uri: 'file://' + photo[10]['path']}}
+                style = {{width:300, height: 300}}
+                />
+              </TouchableOpacity>
             )}
-
-
             </View>
 
 
-            <TouchableOpacity onPress={() => this.picture_detail() } style={ styles.button }>
-    					<Text>사진 상세정보 추가하는 곳으로 바뀔듯...?</Text>
-    				</TouchableOpacity>
+
+            <Button
+              title = "내 경로 만들기"
+              onPress = {() => this.picture_map()}
+            />
 
 
-            <TouchableOpacity onPress={() => this.back_to_home() } style={ styles.button }>
-    					<Text>홈으로 가기</Text>
-    				</TouchableOpacity>
+            <Button
+              title = "홈으로 가기"
+              onPress = {() => this.back_to_home()}
+            />
         </ScrollView>
     );
 

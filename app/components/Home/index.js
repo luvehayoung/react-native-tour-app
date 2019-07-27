@@ -6,8 +6,7 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import NaverLogin from 'react-native-ccs-naver-login';
 import styles from './styles'
 //import ToastModule from './ToastExample';
-import ToastExample from '../../../../ToastExample';
-
+//import ToastExample from '../../../../ToastExample';
 
 
 class Home extends React.Component {
@@ -25,9 +24,9 @@ class Home extends React.Component {
     }
   }
 
-  showToast(){
-      ToastExample.show("awesome",ToastExample.SHORT);
-  }
+  // showToast(){
+  //     ToastExample.show("awesome",ToastExample.SHORT);
+  // }
 
   async logout() {
 		//NaverLogin.logout();
@@ -76,12 +75,12 @@ class Home extends React.Component {
   }
 
   //유저 데이터는 어떻게 넘기게 될지몰라서 이렇게 일단 넘겨주고있어(은지)
-  show_my_tour(user){
-    this.props.navigation.navigate('browse_tour', {'email': user});
+  show_my_tour(){
+    this.props.navigation.navigate('browse_tour');
   }
 
-  new_tour(user){
-    this.props.navigation.navigate('new_tour', {'email': user});
+  new_tour(){
+    this.props.navigation.navigate('new_tour');
   }
 
   render() {
@@ -122,7 +121,7 @@ class Home extends React.Component {
         <View>
             <View style = {parent}>
                 <Text>모듈사용</Text>
-                <Button title ={"모듈사용"} onPress={() => this.showToast() }/>
+                <Button title ={"모듈사용"}/>
             </View>
 
         </View>
@@ -137,10 +136,10 @@ class Home extends React.Component {
         </View>
         <View>
             <View style = {parent}>
-                <Button title ={"내 여행 모두 보기"} onPress={() => this.show_my_tour(itemId) }/>
+                <Button title ={"내 여행 모두 보기"} onPress={() => this.show_my_tour() }/>
             </View>
             <View style = {parent}>
-                <Button title ={"내 여행 기록 남기기"} onPress={() => this.new_tour(itemId) }/>
+                <Button title ={"내 여행 기록 남기기"} onPress={() => this.new_tour() }/>
             </View>
         </View>
         {disconnect}

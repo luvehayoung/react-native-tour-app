@@ -21,15 +21,13 @@ class Browse_Tour_All extends React.Component {
 
   }
   render() {
-    const itemId = this.props.navigation.getParam('email');
+
     const { heading, input, parent } = styles
 
     return (
         <View>
             <Text>내 여행 모두 조회하는 페이지 - 다이어그램에서 내여행 조회 페이지</Text>
-            <View>
-              <Text>itemId: {JSON.stringify(itemId)}</Text>
-            </View>
+
 
             <TouchableOpacity onPress={() => this.go_to_detail() } style={ styles.button }>
     					<Text>여행 후기 1</Text>
@@ -37,7 +35,7 @@ class Browse_Tour_All extends React.Component {
 
 
             <View style = {parent}>
-                <Button title ={"내 여행 기록 남기기"} onPress={() => this.new_tour(itemId) }/>
+                <Button title ={"내 여행 기록 남기기"} onPress={() => this.new_tour() }/>
             </View>
 
             <TouchableOpacity onPress={() => this.back_to_home() } style={ styles.button }>
