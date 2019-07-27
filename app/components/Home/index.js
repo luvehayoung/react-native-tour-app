@@ -6,19 +6,26 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import NaverLogin from 'react-native-ccs-naver-login';
 import styles from './styles'
 //import ToastModule from './ToastExample';
-import ToastExample from '../../../ToastExample';
+import ToastExample from '../../../../ToastExample';
 
 
 
 class Home extends React.Component {
 
-  state = {search_keyword: "", email: "" }
-
-
+  constructor(props) {
+    super(props);
+    this.state ={
+      user : {
+        email : this.props.navigation.getParam('email'),
+        accessToken : this.props.navigation.getParam('accessToken'),
+        nickname : this.props.navigation.getParam('nickname'),
+        login_type: this.props.navigation.getParam('login_type')
+      },
+      search_keyword : ""
+    }
+  }
 
   showToast(){
-
-
       ToastExample.show("awesome",ToastExample.SHORT);
   }
 
@@ -65,7 +72,7 @@ class Home extends React.Component {
 
   //키워드 입력 받고 넘기는 부분 - 은지, 아마 여기서 거리 계산을 해야할것같
   search_on_map(){
-    this.props.navigation.navigate('search_map', {'keyword': this.state.search_keyword});
+    this.props.navigation.navigate('search_list', {'keyword': this.state.search_keyword});
   }
 
   //유저 데이터는 어떻게 넘기게 될지몰라서 이렇게 일단 넘겨주고있어(은지)
@@ -81,21 +88,30 @@ class Home extends React.Component {
 
     const { heading, input, parent } = styles
 
-    //은지 여기서 네이버 api에서 받아왔던 데이터 받아온건데, 우리는 디비에 저장될거니까 어떻게 될지 모르겠구먼
-    const itemId = this.props.navigation.getParam('email');
-    const login_type = this.props.navigation.getParam('login_type');
+    // //은지 여기서 네이버 api에서 받아왔던 데이터 받아온건데, 우리는 디비에 저장될거니까 어떻게 될지 모르겠구먼
+    // const itemId = this.props.navigation.getParam('email');
+    // const login_type = this.props.navigation.getParam('login_type');
 
     //this.setState({email: JSON.stringify(itemId)})
 
 
     let disconnect = []
 
-    if(login_type == '0'){
-    //네이버로 로그인한것
-       disconnect.push(<View style={styles.dis_btn}><Text>네이버 소셜로그인을 하셨습니다. itemId: {JSON.stringify(itemId)}</Text><Button title ={"네이버 연동 해지(회원 탈퇴)"} onPress={() => this.disconnect_naver() }/></View>);
-    }else if(login_type == '1'){
-    //일반 회원 가입한것
-        disconnect.push(<View style={styles.dis_btn}><Text>일반 회원 로그인을 하셨습니다. itemId: {JSON.stringify(itemId)}</Text><Button title ={"일반 회원 탈퇴"} onPress={() => this.disconnect_general() }/></View>);
+    if(this.state.user.login_type == '0'){
+      disconnect.push(
+        <View style={styles.dis_btn}>
+          <Text>네이버 소셜로그인을 하셨습니다. email: {String(this.state.user.email)}</Text>
+          <Button title ={"네이버 연동 해지(회원 탈퇴)"} onPress={() => this.disconnect_naver() }/>
+        </View>
+      );
+    }
+    else if(this.state.user.login_type == '1'){
+        disconnect.push(
+          <View style={styles.dis_btn}>
+            <Text>일반 회원 로그인을 하셨습니다. itemId: {String(this.state.user.login_type)}</Text>
+            <Button title ={"일반 회원 탈퇴"} onPress={() => this.disconnect_general() }/>
+          </View>
+        );
     }
 
 

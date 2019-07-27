@@ -14,16 +14,13 @@ import NaverLogin from 'react-native-ccs-naver-login';
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import styles from './styles'
 
-
-type Props = {};
-export class Naverlogin_page extends Component<Props> {
-
-	state = {
-
-	};
+export class Naverlogin_page extends Component {
 
 	constructor(props) {
-		super(props);
+        super(props);
+        this.state = {
+            loading : false
+        }
 	}
 
 	login() {
@@ -36,11 +33,10 @@ export class Naverlogin_page extends Component<Props> {
 
             /*curl http://blog.naver.com/PostView.nhn?blogId=chic1007&logNo=221482550815&categoryNo=15&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search*/
             //여기서 우리가 가져온 값들 정리해서 디비에 저장하면 될것같다 __ 은지
-            const API_KEY= res.accessToken
-            console.log(API_KEY);
+           
             fetch(`https://openapi.naver.com/v1/nid/me`, {
               headers: {
-                Authorization: `Bearer ${API_KEY}`
+                Authorization: `Bearer ${res.accessToken}`
               }
             })
             .then(response => response.json())
@@ -52,12 +48,11 @@ export class Naverlogin_page extends Component<Props> {
 
                this.props.navigation.navigate('home', {
                  email: json.response.email,
+                 accessToken : res.accessToken,
+                 nickname : json.response.nickname,
                  login_type: 0,
                })
-
-
             });
-
 
           }).catch(e => {
             alert("다시 로그인 해주세요!");
@@ -156,6 +151,5 @@ export class Naverlogin_page extends Component<Props> {
 		);
 	}
 }
-
 
 export default Naverlogin_page
