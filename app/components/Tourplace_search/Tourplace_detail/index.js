@@ -14,6 +14,8 @@ class Tourplace_detail extends React.Component {
         
   render() {
 
+
+    
     return (
         <View>
             <Text>{this.state.data.title} </Text>
