@@ -3,7 +3,7 @@ import { View, Text, Button, TextInput, FlatList,TouchableHighlight,Image } from
 import styles from './styles'
 
 class Tourplace_detail extends React.Component {
-   
+
     constructor(props){
       console.log("detail page")
         super(props);
@@ -11,7 +11,7 @@ class Tourplace_detail extends React.Component {
             data : this.props.navigation.getParam('data')
         }
     }
-        
+
   render() {
 
     return (
@@ -35,7 +35,7 @@ class Tourplace_detail extends React.Component {
 
 
   }
-    
+
 }
 
 export default Tourplace_detail
