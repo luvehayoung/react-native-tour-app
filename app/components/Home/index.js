@@ -9,7 +9,6 @@ import styles from './styles'
 //import ToastExample from '../../../../ToastExample';
 
 
-
 class Home extends React.Component {
 
   constructor(props) {

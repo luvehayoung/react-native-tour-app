@@ -13,6 +13,7 @@ import Browse_Tour_All from './app/components/MyTour/Browse_Tour_All'
 import New_Tour_Main from './app/components/MyTour/New_Tour/New_Tour_Main'
 import New_Tour_Map from './app/components/MyTour/New_Tour/New_Tour_Map'
 import New_Tour_daily_detail from './app/components/MyTour/New_Tour/New_Tour_daily_detail'
+import New_Tour_daily_show from './app/components/MyTour/New_Tour/New_Tour_daily_show'
 
 /*
 class HomeScreen extends React.Component {
@@ -48,6 +49,7 @@ const AppNavigator = createStackNavigator({
   new_tour: New_Tour_Main,
   new_map: New_Tour_Map,
   put_picture: New_Tour_daily_detail,
+  daily: New_Tour_daily_show,
   /*
   screen: HomeScreen,
   test: Test*/

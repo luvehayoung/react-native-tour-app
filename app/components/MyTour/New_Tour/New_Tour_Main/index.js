@@ -83,7 +83,7 @@ class New_Tour_Main extends React.Component {
     return (
         <ScrollView>
             <Text>내 여행 등록하는 페이지 - 다이어그램에서 내여행사진 등록하기 전체</Text>
-          
+
             <Button
               title = "choose photo"
               onPress = {this.handleChoosePhoto}
