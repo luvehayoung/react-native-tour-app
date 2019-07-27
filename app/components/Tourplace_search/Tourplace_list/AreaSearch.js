@@ -3,7 +3,7 @@ import { View, Text, Button, TextInput, FlatList,TouchableHighlight,Image } from
 import styles from './styles';
 import Tour from './Tour';
 
-class Area_Search extends React.Component {
+class AreaSearch extends React.Component {
    
     constructor(props){
         super(props);
@@ -77,4 +77,4 @@ class Area_Search extends React.Component {
 }
 
 
-export default Area_Search
+export default AreaSearch

@@ -11,6 +11,7 @@ class Tourplace_detail extends React.Component {
         this.state = {
             data : this.props.navigation.getParam('data')
         }
+        console.log(this.state.data);
     }
 
     Detail_list = ()=>{
@@ -45,7 +46,7 @@ class Tourplace_detail extends React.Component {
               {this.state.data.tel?(
               <Text>전화번호 : {this.state.data.tel} </Text>
               ) : null}
-              {this.Detail_list()}
+              {/* {this.Detail_list()} */}
           </View>
         </ScrollView>
     );
