@@ -38,7 +38,9 @@ class New_Tour_daily_show extends React.Component {
   render() {
     const { heading, input, parent } = styles
     const photo = this.props.navigation.getParam('photo');
+    const review = this.props.navigation.getParam('review');
 
+    console.log("checkcheck", review);
     return (
       <Swiper
       style={styles.wrapper}
@@ -48,18 +50,21 @@ class New_Tour_daily_show extends React.Component {
 
         <View style={styles.slide} >
           <Image  style={styles.image} source={{isStatic:true, uri: 'file://' + photo[0]['path']}} />
-          <Text style = {styles.image_text} numberOfLines={1}>첫번째사진</Text>
+          <Text style = {styles.image_text} numberOfLines={1}>제목: {review[0]['review'][0]}</Text>
+          <Text style = {styles.image_text2} numberOfLines={1}>후기: {review[0]['review'][1]}</Text>
         </View>
 
         <View style={styles.slide}>
           <Image style={styles.image} source={{isStatic:true, uri: 'file://' + photo[1]['path']}} />
-          <Text style = {styles.image_text} numberOfLines={1}>두번째 사진</Text>
+          <Text style = {styles.image_text} numberOfLines={1}>제목: {review[1]['review'][0]}</Text>
+          <Text style = {styles.image_text2} numberOfLines={1}>후기: {review[1]['review'][1]}</Text>
         </View>
 
 
         <View style={styles.slide} >
           <Image style={styles.image} source={{isStatic:true, uri: 'file://' + photo[2]['path']}} />
-          <Text style = {styles.image_text} numberOfLines={1}>세번째 사진</Text>
+          <Text style = {styles.image_text} numberOfLines={1}>제목: {review[2]['review'][0]}</Text>
+          <Text style = {styles.image_text2} numberOfLines={1}>후기: {review[2]['review'][1]}</Text>
         </View>
 
       </Swiper>

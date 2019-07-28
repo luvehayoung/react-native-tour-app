@@ -134,9 +134,11 @@ class New_Tour_Map extends React.Component {
     this.props.navigation.navigate('home');
   }
 
-  go_to_daily_page(photo){
+  go_to_daily_page(photo, review){
     //날짜별로 데이터를 여기서 넘기나???
-    this.props.navigation.navigate('daily', {'photo': photo});
+    //review를 날짜별로 나누거나 해야할듯...아직 어떻게 할지 모르겠어!!! 일단은 리뷰를 받아오면 통채로 넘겨주는 식으로 구현 해놧어!
+    console.log('new page review', review)
+    this.props.navigation.navigate('daily', {'photo': photo, 'review': review});
   }
 
 
@@ -159,6 +161,7 @@ class New_Tour_Map extends React.Component {
     const { heading, input, parent } = styles;
 
     const photo = this.props.navigation.getParam('photo');
+    const review = this.props.navigation.getParam('review');
 
 
     console.log("photo:" , photo)
@@ -177,8 +180,8 @@ class New_Tour_Map extends React.Component {
                     coordinate= {{latitude: photo[0]['latitude'], longitude: photo[0]['longitude']}}
                       anchor ={{x:0.5, y:1}}
                       onPress = {this.press_marker(1)}
-                      caption = {"제목" }
-                      subcaption = {"그리고 내용..." }
+                      caption = {review[0]['review'][0]}
+                      subcaption = {review[0]['review'][1]}
                       info = {"Hello"}
                       // image =  {{isStatic:true, uri: 'file://' + photo[0]['path']}}
                   />
@@ -209,7 +212,7 @@ class New_Tour_Map extends React.Component {
 
             <View>
               <TouchableOpacity
-                  onPress = {()=> this.go_to_daily_page(photo) }
+                  onPress = {()=> this.go_to_daily_page(photo, review) }
                  >
                    <Text style = { styles.openText }>첫째날</Text>
               </TouchableOpacity>

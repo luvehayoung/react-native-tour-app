@@ -20,6 +20,11 @@ export default StyleSheet.create({
   image_text: {
     position:'absolute',
     backgroundColor: 'white',
+    bottom: 30,
+  },
+  image_text2: {
+    position:'absolute',
+    backgroundColor: 'white',
     bottom: 10,
   },
   paginationStyle: {

@@ -14,6 +14,8 @@ class New_Tour_Main extends React.Component {
     state ={
       photo: [],
       picture_num: null,
+      selected: false,
+      review: [],
     }
 
     handleChoosePhoto = () =>{
@@ -55,16 +57,45 @@ class New_Tour_Main extends React.Component {
     }
 
 
+    // onSelect = data => {
+    //   this.setState(data);
+    // };
+    //
+    // onPress = () => {
+    //   this.props.navigate("ViewB", { onSelect: this.onSelect });
+    // };
+
+
+  onSelect = data => {
+     this.setState(data);
+
+
+   };
+
+  onReview = data => {
+    //this.setSate(data)
+    //this.setState(data);
+    // photo: this.state.photo.concat(response)
+    // });
+
+    this.setState({
+      review: this.state.review.concat(data)
+    });
+
+  };
+
+
   picture_detail(){
     //New_Tour_daily_detail
-    this.props.navigation.navigate('put_picture');
+    //this.props.navigation.navigate('put_picture');
+    this.props.navigation.navigate("put_picture", { onSelect: this.onSelect, onReview: this.onReview });
   }
 
   picture_map(){
     //New_Tour_daily_detail
-    this.props.navigation.navigate('new_map', {'photo': this.state.photo});
-
-
+    this.props.navigation.navigate('new_map', {'photo': this.state.photo, 'review': this.state.review});
+    console.log('selected', this.state.selected);
+    console.log('review', this.state.review);
 
   }
 
@@ -76,10 +107,13 @@ class New_Tour_Main extends React.Component {
   }
 
   render() {
-    //const itemId = this.props.navigation.getParam('email');
+    // const NameOBJ = this.props.navigation.getParam('NameOBJ');
+    // const NumberOBJ = this.props.navigation.getParam('NumberOBJ');
+
     const { heading, input, parent } = styles
 
     const {photo} = this.state
+
     return (
         <ScrollView>
             <Text>내 여행 등록하는 페이지 - 다이어그램에서 내여행사진 등록하기 전체</Text>
@@ -92,7 +126,10 @@ class New_Tour_Main extends React.Component {
             <View>
 
             {photo[0] && (
+
               <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Text>{this.state.selected ? "Selected" : "Not Selected"}</Text>
+                <Text>{this.state.review[0] ? "작성완료": "review not done"}</Text>
                 <Image
                 source={{isStatic:true, uri: 'file://' + photo[0]['path']}}
                 style = {{width:300, height: 300}}
@@ -102,6 +139,7 @@ class New_Tour_Main extends React.Component {
 
             {photo[1] && (
               <TouchableOpacity onPress = {() => this.picture_detail()}>
+              <Text>{this.state.review[1] ? "작성완료": "review not done"}</Text>
                 <Image
                 source={{isStatic:true, uri: 'file://' + photo[1]['path']}}
                 style = {{width:300, height: 300}}
@@ -120,6 +158,7 @@ class New_Tour_Main extends React.Component {
 
             {photo[3] && (
               <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Text>{this.state.review[0] ? "작성완료": "review not done"}</Text>
                 <Image
                 source={{isStatic:true, uri: 'file://' + photo[3]['path']}}
                 style = {{width:300, height: 300}}
@@ -129,6 +168,7 @@ class New_Tour_Main extends React.Component {
 
             {photo[4] && (
               <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Text>{this.state.review[0] ? "작성완료": "review not done"}</Text>
                 <Image
                 source={{isStatic:true, uri: 'file://' + photo[4]['path']}}
                 style = {{width:300, height: 300}}
@@ -138,6 +178,7 @@ class New_Tour_Main extends React.Component {
 
             {photo[5] && (
               <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Text>{this.state.review[0] ? "작성완료": "review not done"}</Text>
                 <Image
                 source={{isStatic:true, uri: 'file://' + photo[5]['path']}}
                 style = {{width:300, height: 300}}
@@ -147,6 +188,7 @@ class New_Tour_Main extends React.Component {
 
             {photo[6] && (
               <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Text>{this.state.review[0] ? "작성완료": "review not done"}</Text>
                 <Image
                 source={{isStatic:true, uri: 'file://' + photo[6]['path']}}
                 style = {{width:300, height: 300}}
@@ -156,6 +198,7 @@ class New_Tour_Main extends React.Component {
 
             {photo[7] && (
               <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Text>{this.state.review[0] ? "작성완료": "review not done"}</Text>
                 <Image
                 source={{isStatic:true, uri: 'file://' + photo[7]['path']}}
                 style = {{width:300, height: 300}}
@@ -165,6 +208,7 @@ class New_Tour_Main extends React.Component {
 
             {photo[8] && (
               <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Text>{this.state.review[0] ? "작성완료": "review not done"}</Text>
                 <Image
                 source={{isStatic:true, uri: 'file://' + photo[8]['path']}}
                 style = {{width:300, height: 300}}
@@ -174,6 +218,7 @@ class New_Tour_Main extends React.Component {
 
             {photo[9] && (
               <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Text>{this.state.review[0] ? "작성완료": "review not done"}</Text>
                 <Image
                 source={{isStatic:true, uri: 'file://' + photo[9]['path']}}
                 style = {{width:300, height: 300}}
@@ -183,6 +228,7 @@ class New_Tour_Main extends React.Component {
 
             {photo[10] && (
               <TouchableOpacity onPress = {() => this.picture_detail()}>
+                <Text>{this.state.review[0] ? "작성완료": "review not done"}</Text>
                 <Image
                 source={{isStatic:true, uri: 'file://' + photo[10]['path']}}
                 style = {{width:300, height: 300}}

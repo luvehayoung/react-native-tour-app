@@ -26,7 +26,7 @@ class Home extends React.Component {
 		//NaverLogin.logout();
     const token = await NaverLogin.getAccessToken()
     alert("logout Successful\n" + JSON.stringify(token));
-                
+
     //회원탈퇴같은 느낌??
     try{
       const tmp = await fetch('https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=FbkrsrnqyIAabTRpvvUg&client_secret=TniDRPTiML&access_token='+token.accessToken+'&service_provider=NAVER')
