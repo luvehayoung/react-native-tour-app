@@ -21,24 +21,24 @@ class AuthLoadingScreen extends React.Component {
     if (!userEmail)
       this.props.navigation.navigate('Auth');
     else {
-      const users = await fetch('http://192.168.219.101:3000/users/'+userEmail)
-      const user_json = await users.json()
+    //   const users = await fetch('http://192.168.219.101:3000/users/'+userEmail)
+    //   const user_json = await users.json()
 
-      this.props.navigation.navigate('home', {
-        email: userEmail,
-        accessToken: user_json.accessToken,
-        nickname: user_json.nickname,
-        login_type: 0,
-      })
-    }
-    //하영이 언니가 실행할때는 서버없으니까 밑에걸로 실행
-    // this.props.navigation.navigate('home', {
+    //   this.props.navigation.navigate('home', {
     //     email: userEmail,
-    //     accessToken:" user_json.accessToken",
-    //     nickname: "user_json.nickname",
+    //     accessToken: user_json.accessToken,
+    //     nickname: user_json.nickname,
     //     login_type: 0,
     //   })
     // }
+    //하영이 언니가 실행할때는 서버없으니까 밑에걸로 실행
+    this.props.navigation.navigate('home', {
+        email: userEmail,
+        accessToken:" user_json.accessToken",
+        nickname: "user_json.nickname",
+        login_type: 0,
+      })
+    }
   };
 
   render() {

@@ -34,7 +34,7 @@ import New_Tour_daily_show from './app/components/MyTour/New_Tour/New_Tour_daily
 import Home from './app/components/Home'
 import {AuthLoadingScreen,NaverLoginScreen} from './app/components/Login'
 import Tourplace_map from './app/components/Tourplace_search/Tourplace_map'
-import Tourplace_detail from './app/components/Tourplace_search/Tourplace_detail'
+import { TourDetail, TourInfo, TourMap } from './app/components/Tourplace_search/Tourplace_detail'
 import {AreaSearch, TitleSearch} from './app/components/Tourplace_search/Tourplace_list'
 import Browse_Tour_detail from './app/components/MyTour/Browse_Tour_detail'
 import Browse_Tour_All from './app/components/MyTour/Browse_Tour_All'
@@ -59,14 +59,28 @@ const SearchNavigator = createMaterialTopTabNavigator(
           },
       }
   )
+  const InfoNavigator = createMaterialTopTabNavigator(
+    {
+      TourInfo: { screen: TourInfo },
+      TourDetail: { screen: TourDetail },
+      TourMap: { screen: TourMap }
+    },
+    {
+      tabBarOptions: {
+        activeTintColor: 'white',
+        inactiveTintColor: 'gray',
+      },
+    }
+  )
 
-const AuthStack = createStackNavigator({   naver_login: NaverLoginScreen, });
+
+const AuthStack = createStackNavigator({ naver_login: NaverLoginScreen, });
 
 const AppNavigator = createStackNavigator({
   home: Home,
-  search_list : SearchNavigator,
+  search_list: SearchNavigator,
   search_map: Tourplace_map,
-  search_detail: Tourplace_detail,
+  search_detail: InfoNavigator,
   browse_tour:Browse_Tour_All,
   browse_tour_detail:Browse_Tour_detail,
   new_tour: New_Tour_Main,
@@ -76,6 +90,8 @@ const AppNavigator = createStackNavigator({
   /*
   screen: HomeScreen,
   test: Test*/
+
+
 
 });
 
