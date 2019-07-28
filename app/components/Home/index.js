@@ -5,10 +5,6 @@ import { View, Text, Button, TextInput } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import NaverLogin from 'react-native-ccs-naver-login';
 import styles from './styles'
-//import ToastModule from './ToastExample';
-//import ToastExample from '../../../../ToastExample';
-
-
 
 class Home extends React.Component {
 
@@ -23,29 +19,25 @@ class Home extends React.Component {
       },
       search_keyword : ""
     }
+    console.log(this.state)
   }
 
-  // showToast(){
-  //     ToastExample.show("awesome",ToastExample.SHORT);
-  // }
-
-  async logout() {
+  logout = async()=> {
 		//NaverLogin.logout();
-    NaverLogin.getAccessToken()
-      .then(token => {
-                alert("logout Successful\n" + JSON.stringify(token));
-                //console.log(JSON.parse(token).accessToken);
-                console.log();
-                //회원탈퇴같은 느낌??
-                fetch('https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=FbkrsrnqyIAabTRpvvUg&client_secret=TniDRPTiML&access_token='+token.accessToken+'&service_provider=NAVER')
+    const token = await NaverLogin.getAccessToken()
+    alert("logout Successful\n" + JSON.stringify(token));
 
-            this.setState({ loading: false });
-          }).catch(e => {
-              alert("logout Failure");
-            console.log(e);
-            this.setState({ loading: false });
-          });
+    //회원탈퇴같은 느낌??
+    try{
+      const tmp = await fetch('https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=FbkrsrnqyIAabTRpvvUg&client_secret=TniDRPTiML&access_token='+token.accessToken+'&service_provider=NAVER')
+      this.setState({ loading: false });
     }
+    catch(e){
+      alert("logout Failure");
+      console.log(e);
+      this.setState({ loading: false });
+    }
+  }
     /*
 	async getToken() {
 		this.setState({ loading: true });

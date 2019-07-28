@@ -8,16 +8,47 @@ import styles from './styles'
 
 class New_Tour_daily_detail extends React.Component {
 
-  go_to_main(){
-
-    this.props.navigation.navigate('new_tour');
+  constructor(props) {
+    super(props)
+    this.state = {
+      title: '',
+      contents: '',
+    }
   }
+
+  go_to_main(){
+    //this.props.navigation.navigate('new_tour');
+
+    const { navigation } = this.props;
+    navigation.goBack();
+    navigation.state.params.onSelect({ selected: true});
+    navigation.state.params.onReview({ review: [this.state.title, this.state.contents] });
+  }
+
+  handleTitle = (text) => {
+        this.setState({ title: text })
+   }
+   handleContents = (text) => {
+      this.setState({ contents: text })
+   }
+
   render() {
     const { heading, input, parent } = styles
 
     return (
         <View>
             <Text>내 여행 사진이랑 후기 넣는 페이지- 다이어그램에서 내 여행후기 사진추가 페이지</Text>
+
+            <TextInput
+             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+             onChangeText={this.handleTitle}
+           />
+
+           <TextInput
+             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+             onChangeText={this.handleContents}
+           />
+
 
             <TouchableOpacity onPress={() => this.go_to_main() } style={ styles.button }>
     					<Text>사진 추가 완료</Text>

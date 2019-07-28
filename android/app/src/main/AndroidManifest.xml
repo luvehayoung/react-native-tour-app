@@ -31,7 +31,12 @@
 
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 
-  
+      <meta-data android:name="com.naver.sdk.ClientId" android:value="FbkrsrnqyIAabTRpvvUg" />
+    <meta-data android:name="com.naver.sdk.ClientSecret" android:value="TniDRPTiML" />
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="2svmw87ll2" />
     </application>
 
 </manifest>
