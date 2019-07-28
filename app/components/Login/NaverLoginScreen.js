@@ -46,6 +46,27 @@ export class NaverLoginScreen extends Component {
             const json = await response.json()
             await AsyncStorage.setItem('userEmail', json.response.email);
             
+            const users = await fetch('http://192.168.219.101:3000/users',{
+                method : "POST",
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    email: json.response.email,
+                    accessToken : res.accessToken,
+                    nickname : json.response.nickname,
+                })}            
+            )
+
+            const user_json = await users.json()
+            if(user_json.message == 1){
+                console.log("가입 이력이 있는 고객")
+            }
+            else if(user_json.message == 0){
+                console.log("회원 가입 성공")
+            }
+
             this.props.navigation.navigate('home', {
                 email: json.response.email,
                 accessToken : res.accessToken,
