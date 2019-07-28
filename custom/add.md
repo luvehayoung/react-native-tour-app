@@ -17,6 +17,11 @@ public void setSubCaptionText(RNNaverMapMarker view, String message) {
 
 
 RNNaverMapMarker
+
+//
+import com.naver.maps.map.overlay.Align;
+import 	android.graphics.Color;
+
 //내가 추가하는 부분 시작//
 public void setCaptionText(String message) {
     feature.setCaptionText(message);

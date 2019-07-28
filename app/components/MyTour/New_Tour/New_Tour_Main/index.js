@@ -13,6 +13,7 @@ class New_Tour_Main extends React.Component {
 
     state ={
       photo: [],
+      lanlat: [],
       picture_num: null,
       selected: false,
       review: [],
@@ -39,31 +40,10 @@ class New_Tour_Main extends React.Component {
             console.log("photo", this.state.photo)
         }
 
-        // let pictures = []
-        //
-        // for(let i = 0; i< this.state.picture_num; i++ ){
-        //   console.log("state", i, "번째", this.state.photo[i]['path'])
-        //
-        //   pictures.push(
-        //    <Image source={{isStatic:true, uri: 'file://' + this.state.photo[i]['path']}} style = {{width:300, height: 300}} />
-        //     )
-        // }
-        // //this.setState({picture: pictures})
-        //
-        // console.log("pictures", pictures)
 
       });
 
     }
-
-
-    // onSelect = data => {
-    //   this.setState(data);
-    // };
-    //
-    // onPress = () => {
-    //   this.props.navigate("ViewB", { onSelect: this.onSelect });
-    // };
 
 
   onSelect = data => {
@@ -93,9 +73,15 @@ class New_Tour_Main extends React.Component {
 
   picture_map(){
     //New_Tour_daily_detail
-    this.props.navigation.navigate('new_map', {'photo': this.state.photo, 'review': this.state.review});
+    // this.setState({
+    //   lanlat: this.state.lanlat.concat({latitude: this.state.photo[i]['latitude'], longitude: this.state.photo[i]['longitude']})
+    // });
+
+    this.props.navigation.navigate('new_map', {'photo': this.state.photo, 'review': this.state.review, 'picture_num': this.state.picture_num, 'lanlat': this.state.lanlat});
     console.log('selected', this.state.selected);
     console.log('review', this.state.review);
+    console.log('lanlat', this.state.lanlat);
+    console.log('num', this.state.picture_num);
 
   }
 

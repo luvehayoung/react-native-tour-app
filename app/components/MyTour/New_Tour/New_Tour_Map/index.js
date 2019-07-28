@@ -162,8 +162,15 @@ class New_Tour_Map extends React.Component {
 
     const photo = this.props.navigation.getParam('photo');
     const review = this.props.navigation.getParam('review');
+    const picture_num = this.props.navigation.getParam('picture_num');
 
+    arr = []
+    for(i=0; i<picture_num; i++) {
+      arr.push({latitude: photo[i]['latitude'], longitude: photo[i]['longitude']});
+    }
 
+    console.log('arr',arr);
+    //[{latitude: photo[0]['latitude'], longitude: photo[0]['longitude']}, {latitude: photo[1]['latitude'], longitude: photo[1]['longitude']}, {latitude: photo[2]['latitude'], longitude: photo[2]['longitude']}]
     console.log("photo:" , photo)
     //  image = {{isStatic:true, uri: 'file://' + photo[0]['path'], width:30}}
     //<Image style={{width: '30', height: '30' }} source={{isStatic:true, uri: 'file://' + photo[0]['path']}}
@@ -182,7 +189,7 @@ class New_Tour_Map extends React.Component {
                       onPress = {this.press_marker(1)}
                       caption = {review[0]['review'][0]}
                       subcaption = {review[0]['review'][1]}
-                      info = {"Hello"}
+
                       // image =  {{isStatic:true, uri: 'file://' + photo[0]['path']}}
                   />
               )}
@@ -191,7 +198,9 @@ class New_Tour_Map extends React.Component {
                   <Marker coordinate= {{latitude: photo[1]['latitude'], longitude: photo[1]['longitude']}}
                     anchor ={{x:0.5, y:1}}
                     flat =  {true}
-                    info = {"Hello"}
+                    caption = {review[1]['review'][0]}
+                    subcaption = {review[1]['review'][1]}
+
                    />
               )}
 
@@ -199,11 +208,76 @@ class New_Tour_Map extends React.Component {
                   <Marker coordinate= {{latitude: photo[2]['latitude'], longitude: photo[2]['longitude']}}
                     anchor ={{x:0.5, y:1}}
                     flat =  {true}
-                    info = {"Hello"}
+                    caption = {review[2]['review'][0]}
+                    subcaption = {review[2]['review'][1]}
                    />
               )}
 
-              <Polyline coordinates= {[{latitude: photo[0]['latitude'], longitude: photo[0]['longitude']}, {latitude: photo[1]['latitude'], longitude: photo[1]['longitude']}, {latitude: photo[2]['latitude'], longitude: photo[2]['longitude']}]}
+              {photo[3] && (
+                  <Marker coordinate= {{latitude: photo[3]['latitude'], longitude: photo[3]['longitude']}}
+                    anchor ={{x:0.5, y:1}}
+                    flat =  {true}
+                    caption = {review[3]['review'][0]}
+                    subcaption = {review[3]['review'][1]}
+                   />
+              )}
+
+
+              {photo[4] && (
+                  <Marker coordinate= {{latitude: photo[4]['latitude'], longitude: photo[4]['longitude']}}
+                    anchor ={{x:0.5, y:1}}
+                    flat =  {true}
+                    caption = {review[4]['review'][0]}
+                    subcaption = {review[4]['review'][1]}
+                   />
+              )}
+
+              {photo[5] && (
+                  <Marker coordinate= {{latitude: photo[5]['latitude'], longitude: photo[5]['longitude']}}
+                    anchor ={{x:0.5, y:1}}
+                    flat =  {true}
+                    caption = {review[5]['review'][0]}
+                    subcaption = {review[5]['review'][1]}
+                   />
+              )}
+
+              {photo[6] && (
+                  <Marker coordinate= {{latitude: photo[6]['latitude'], longitude: photo[6]['longitude']}}
+                    anchor ={{x:0.5, y:1}}
+                    flat =  {true}
+                    caption = {review[6]['review'][0]}
+                    subcaption = {review[6]['review'][1]}
+                   />
+              )}
+
+              {photo[7] && (
+                  <Marker coordinate= {{latitude: photo[7]['latitude'], longitude: photo[7]['longitude']}}
+                    anchor ={{x:0.5, y:1}}
+                    flat =  {true}
+                    caption = {review[7]['review'][0]}
+                    subcaption = {review[7]['review'][1]}
+                   />
+              )}
+
+              {photo[8] && (
+                  <Marker coordinate= {{latitude: photo[8]['latitude'], longitude: photo[8]['longitude']}}
+                    anchor ={{x:0.5, y:1}}
+                    flat =  {true}
+                    caption = {review[8]['review'][0]}
+                    subcaption = {review[8]['review'][1]}
+                   />
+              )}
+
+              {photo[9] && (
+                  <Marker coordinate= {{latitude: photo[9]['latitude'], longitude: photo[10]['longitude']}}
+                    anchor ={{x:0.5, y:1}}
+                    flat =  {true}
+                    caption = {review[9]['review'][0]}
+                    subcaption = {review[9]['review'][1]}
+                   />
+              )}
+
+              <Polyline coordinates= {arr}
                 strokeWidth= {3}
                 strokeColor= {"blue"}></Polyline>
 
