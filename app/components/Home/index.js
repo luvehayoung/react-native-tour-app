@@ -1,7 +1,7 @@
 // In App.js in a new project
 
 import React from "react";
-import { View, Text, Button, TextInput } from "react-native";
+import { TouchableOpacity, View, Text, Button, TextInput } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import NaverLogin from 'react-native-ccs-naver-login';
 import styles from './styles'
@@ -91,60 +91,81 @@ class Home extends React.Component {
 
     if(this.state.user.login_type == '0'){
       disconnect.push(
-        <View style={styles.dis_btn}>
-          <Text>네이버 소셜로그인을 하셨습니다. email: {String(this.state.user.email)}</Text>
-          <Button title ={"네이버 연동 해지(회원 탈퇴)"} onPress={() => this.disconnect_naver() }/>
+        <View style={styles.case4}>
+          <TouchableOpacity onPress={() => this.disconnect_naver() }>
+            <Text style={{textAlign: 'center', color:'#949494', lineHeight: 45, }}>네이버 연동 해지</Text>
+          </TouchableOpacity>
         </View>
       );
     }
     else if(this.state.user.login_type == '1'){
         disconnect.push(
-          <View style={styles.dis_btn}>
-            <Text>일반 회원 로그인을 하셨습니다. itemId: {String(this.state.user.login_type)}</Text>
-            <Button title ={"일반 회원 탈퇴"} onPress={() => this.disconnect_general() }/>
+          <View style={styles.case4}>
+            <TouchableOpacity onPress={() => this.disconnect_general() }>
+              <Text style={{textAlign: 'center', color:'#949494', lineHeight: 45, }}>일반 회원 탈퇴</Text>
+            </TouchableOpacity>
           </View>
         );
     }
 
 
     return (
-      <View>
-        <Text>Home!</Text>
-
-        <View>
-            <View style = {parent}>
-                <Text>모듈사용</Text>
-                <Button title ={"모듈사용"}/>
-            </View>
-
-        </View>
-
-        <View>
-            <View style = {parent}>
-                <Text>검색어 입력창</Text>
-                <TextInput style = {input} placeholder = "검색어를 입력해주세요" onChangeText = {text => this.setState({ search_keyword: text })} />
-                <Button title ={"검색하기"} onPress={() => this.search_on_map() }/>
-            </View>
-
-        </View>
-        <View>
-            <View style = {parent}>
-                <Button title ={"내 여행 모두 보기"} onPress={() => this.show_my_tour() }/>
-            </View>
-            <View style = {parent}>
-                <Button title ={"내 여행 기록 남기기"} onPress={() => this.new_tour() }/>
-            </View>
-        </View>
+      <View style = {styles.container}>
         {disconnect}
+        <View style={styles.case1}>
+              <TextInput style={{
+                marginTop: 10,
+                width: 250,
+                height: 50,
+                borderBottomLeftRadius: 10,
+                borderTopLeftRadius: 10,
+                borderWidth: 1,
+                borderColor: 'black',
+                paddingLeft: 10
+              }} placeholder = "알고 싶은 관광지를 입력해주세요" onChangeText = {text => this.setState({ search_keyword: text })} />
+              <TouchableOpacity style={{
+                width: 50,
+                height: 50,
+                marginTop:10,
+                backgroundColor: 'black',
+                borderBottomRightRadius: 10,
+                borderTopRightRadius: 10,
+              }} onPress={()=>this.search_on_map()}><Text style={{textAlign: 'center', color:'white', lineHeight: 45}}>검색</Text></TouchableOpacity>
+        </View>
+
+        <View style = {styles.case2}>
+            <TouchableOpacity
+              style={{
+                width: 300,
+                height: 50,
+                marginTop:30,
+                backgroundColor: 'black',
+                borderRadius: 10,
+              }}
+            onPress={() => this.show_my_tour()}>
+              <Text style={{textAlign: 'center', color:'white', lineHeight: 45}}>내 여행 모두 보기</Text>
+            </TouchableOpacity>
+        </View>
 
 
+        <View style = {styles.case3}>
+            <TouchableOpacity
+              style={{
+                width: 300,
+                height: 50,
+                marginTop:10,
+                backgroundColor: 'black',
+                borderRadius: 10,
+              }}
+            onPress={() => this.new_tour() }>
+              <Text style={{textAlign: 'center', color:'white', lineHeight: 45}}>내 여행 기록 남기기</Text>
+            </TouchableOpacity>
+
+        </View>
 
       </View>
     );
-
-
   }
 }
-
 
 export default Home

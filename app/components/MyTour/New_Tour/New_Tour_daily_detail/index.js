@@ -36,22 +36,24 @@ class New_Tour_daily_detail extends React.Component {
     const { heading, input, parent } = styles
 
     return (
-        <View>
-            <Text>내 여행 사진이랑 후기 넣는 페이지- 다이어그램에서 내 여행후기 사진추가 페이지</Text>
-
+        <View style={styles.container}>
+          <View style={styles.contents_1}>
+            <Text style={{textAlign: 'center', color:'#949494', lineHeight: 25, }}>제목을 입력해주세요</Text>
             <TextInput
-             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+             style={{width: 300, height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 10,}}
              onChangeText={this.handleTitle}
            />
+          </View>
 
+          <View style={styles.contents_2}>
+           <Text style={{textAlign: 'center', color:'#949494', lineHeight: 25, }}>후기를 입력해주세요</Text>
            <TextInput
-             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+             style={{width: 300, height: 200, borderColor: 'gray', borderWidth: 1, borderRadius: 10,}}
              onChangeText={this.handleContents}
            />
-
-
-            <TouchableOpacity onPress={() => this.go_to_main() } style={ styles.button }>
-    					<Text>사진 추가 완료</Text>
+           </View>
+            <TouchableOpacity onPress={() => this.go_to_main() } style={ styles.btn_end }>
+    					<Text style={{textAlign: 'center', color:'white', lineHeight: 45}}>사진 추가 완료</Text>
     				</TouchableOpacity>
         </View>
     );

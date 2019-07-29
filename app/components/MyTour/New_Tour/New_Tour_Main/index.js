@@ -44,8 +44,7 @@ class New_Tour_Main extends React.Component {
     for (i in this.state.photo) {
       photo_arr.push(
         <TouchableOpacity onPress={() => this.picture_detail()}>
-          <Text>{this.state.selected ? "Selected" : "Not Selected"}</Text>
-          <Text>{this.state.review[i] ? "작성완료" : "review not done"}</Text>
+          <Text style={{textAlign: 'center', color:'#949494', lineHeight: 25, }}>{this.state.review[i] ? "작성완료" : "review not done"}</Text>
           <Image
             source={{ isStatic: true, uri: 'file://' + this.state.photo[i]['path'] }}
             style={{ width: 300, height: 300 }}
@@ -87,26 +86,25 @@ class New_Tour_Main extends React.Component {
 
   render() {
 
-    const { heading, input, parent } = styles
-
     return (
-      <ScrollView>
-        <Text>내 여행 등록하는 페이지 - 다이어그램에서 내여행사진 등록하기 전체</Text>
-        <Button
-          title="choose photo"
-          onPress={this.handleChoosePhoto}
-        />
+      <ScrollView contentContainerStyle = {styles.container}>
+
+        <TouchableOpacity
+          style = {styles.btn_start}
+          onPress={this.handleChoosePhoto}>
+          <Text style={{textAlign: 'center', color:'white', lineHeight: 45}}>choose photo</Text>
+        </TouchableOpacity>
+
         <View>
           {this.photoList()}
         </View>
-        <Button
-          title="내 경로 만들기"
-          onPress={() => this.picture_map()}
-        />
-        <Button
-          title="홈으로 가기"
-          onPress={() => this.back_to_home()}
-        />
+
+        <TouchableOpacity
+          style = {styles.btn_end}
+          onPress={() => this.picture_map()}>
+          <Text style={{textAlign: 'center', color:'white', lineHeight: 45}}>내 경로 만들기</Text>
+        </TouchableOpacity>
+
       </ScrollView>
     );
   }
