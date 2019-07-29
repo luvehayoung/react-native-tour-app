@@ -23,7 +23,10 @@ class TourDetail extends React.Component {
   }
 
   Detail_list = () => {
-    var except_key = ["_id", "cat1", "cat2", "cat3", "contenttypeid", "firstimage", "firstimage2", "mapx", "mapy", "modifiedtime", "title", "mlevel", "zipcode", "areacode","image",
+    var except_key = ["_id", "cat1", "cat2", 
+        "cat3", "contenttypeid", "firstimage", 
+        "firstimage2", "mapx", "mapy", "modifiedtime", 
+        "title", "mlevel", "zipcode", "areacode","image",
         "heritage1","heritage2","heritage3"]
     let detail_arr = []
     for (key in this.state.data) {
