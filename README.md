@@ -19,6 +19,8 @@
 ## 관광지 데이터를 키워드를 이용하여 검색하는 화면
 <img src="./타이틀검색.gif" width="250">
 
+## 관광지 데이터를 키워드를 이용하여 검색하는 화면
+<img src="./지역검색2 (1).gif" width="250">
 
 
 ## 사진을 업로드하고 일지를 적성하는 화면
@@ -48,13 +50,6 @@
 
 
 
-
-
-
-
-
-
-
 # Supported modules 이 프로젝트에서 사용되는 모듈들
 
  1. React-native-nmap: https://github.com/QuadFlask/react-native-naver-map
@@ -65,18 +60,6 @@
  6. React-native-swiper: https://github.com/leecade/react-native-swiper
 
 
-
-
-
-
-# 네이버 지도 api 사용 방법
-
-
-
-
-
-
-# 네이버 로그인 기능(네아로) 사용 방법
 
 
 
