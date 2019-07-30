@@ -58,7 +58,7 @@ class TourInfo extends React.Component {
 
         return (
             <ScrollView style = {styles.scroll}>
-                <Text>{this.state.data.title} </Text>
+                <Text style={styles.MaintitleText}>{this.state.data.title} </Text>
                 {this.state.data.firstimage ? (
                     <Swiper
                         style={styles.wrapper}
@@ -69,19 +69,19 @@ class TourInfo extends React.Component {
                     </Swiper>
                 ) : null}
                 {this.state.data.addr1 ? (
-                    <Text>주소 : {this.state.data.addr1} </Text>
-                ) : <Text>주소 : {this.state.data.areacode[0].name}</Text>}
+                    <Text> <Text style={styles.titleText}>주소 :</Text> {this.state.data.addr1} </Text>
+                ) : null}
                 {this.state.data.readcount ? (
-                    <Text>조회수 : {this.state.data.readcount} </Text>
+                    <Text> <Text style={styles.titleText}>조회수 :</Text> {this.state.data.readcount} </Text>
                 ) : null}
                 {this.state.data.tel ? (
-                    <Text>전화번호 : {this.state.data.tel} </Text>
+                    <Text> <Text style={styles.titleText}>전화번호 :</Text> {this.state.data.tel} </Text>
                 ) : null}
-                {/* {this.state.data.overview ? (
-                <Text>소개 : {this.state.data.overview} </Text>
+                {this.state.data.overview ? (
+                <Text> <Text style={styles.titleText}>소개 :</Text> {this.state.data.overview} </Text>
                 ) : null}
-                {this.state.data.homepage ? (
-                <Text>홈페이지 : {this.state.data.homepage} </Text>
+                {/* {this.state.data.homepage ? (
+                <Text> <Text style={styles.titleText}>홈페이지 :</Text> {this.state.data.homepage} </Text>
                 ) : null} */}
             </ScrollView>
         );

@@ -1,9 +1,13 @@
 // In App.js in a new project
 
 import React from "react";
-import { View, Text, Button, TextInput, TouchableOpacity } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
-import NaverLogin from 'react-native-ccs-naver-login';
+import { 
+  View, 
+  Text, 
+  Button, 
+  TextInput, 
+  TouchableOpacity 
+} from "react-native";
 import styles from './styles'
 
 class New_Tour_daily_detail extends React.Component {
@@ -17,11 +21,8 @@ class New_Tour_daily_detail extends React.Component {
   }
 
   go_to_main(){
-    //this.props.navigation.navigate('new_tour');
-
     const { navigation } = this.props;
     navigation.goBack();
-    navigation.state.params.onSelect({ selected: true});
     navigation.state.params.onReview({ review: [this.state.title, this.state.contents] });
   }
 

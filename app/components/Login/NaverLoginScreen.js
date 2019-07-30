@@ -95,49 +95,6 @@ export class NaverLoginScreen extends Component {
         this.props.navigation.navigate('home', {email: 'random@email.com', login_typle: 1})
     }
 
-    /*
-	async logout() {
-		//NaverLogin.logout();
-    NaverLogin.getAccessToken()
-      .then(token => {
-                alert("logout Successful\n" + JSON.stringify(token));
-                //console.log(JSON.parse(token).accessToken);
-                console.log();
-                //회원탈퇴같은 느낌??
-                fetch('https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=FbkrsrnqyIAabTRpvvUg&client_secret=TniDRPTiML&access_token='+token.accessToken+'&service_provider=NAVER')
-
-            this.setState({ loading: false });
-          }).catch(e => {
-              alert("logout Failure");
-            console.log(e);
-            this.setState({ loading: false });
-          });
-    }
-
-	async getToken() {
-		this.setState({ loading: true });
-        NaverLogin.getAccessToken()
-          .then(token => {
-                    alert("Signed Successful\n" + JSON.stringify(token));
-          			this.setState({ loading: false });
-          		}).catch(e => {
-          		    alert("Signed Failure");
-          			console.log(e);
-          			this.setState({ loading: false });
-          		});
-	}
-    */
-
-    /*
-    				<TouchableOpacity onPress={() => this.logout() } style={ styles.button }>
-    					<Text>네이버 연동 해제</Text>
-    				</TouchableOpacity>
-
-    				<TouchableOpacity onPress={() => this.getToken() } style={ styles.button }>
-    					<Text>getToken</Text>
-    				</TouchableOpacity>
-    				*/
-
 	render() {
 		return (
 			<View style={styles.container}>
@@ -156,12 +113,9 @@ export class NaverLoginScreen extends Component {
                     <Text>일반 회원 로그인</Text>
                 </TouchableOpacity>
 
-
 				<TouchableOpacity onPress={() => this.sign_up() } style={ styles.button }>
                 	<Text>일반 회원 가입</Text>
                 </TouchableOpacity>
-
-
 
 			</View>
 		);

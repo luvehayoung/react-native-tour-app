@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, Button, TextInput, FlatList,TouchableHighlight,Image } from "react-native";
+import { 
+    View, 
+    Text, 
+    Button, 
+    TextInput, 
+    FlatList,
+    TouchableHighlight,Image 
+} from "react-native";
 import styles from './styles';
 import Tour from './Tour';
 

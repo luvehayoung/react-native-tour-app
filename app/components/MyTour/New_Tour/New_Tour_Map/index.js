@@ -1,323 +1,132 @@
 // In App.js in a new project
 
 import React from "react";
-import { ScrollView, Modal, View, Text, Button, TextInput, TouchableOpacity, Image, TouchableHighlight } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
-
-
-import NaverLogin from 'react-native-ccs-naver-login';
+import {
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  ActivityIndicator
+} from "react-native";
 import styles from './styles'
 import NaverMapView from "react-native-nmap";
-import {Marker} from "react-native-nmap";
-import {Polyline} from "react-native-nmap";
-
-
-//
-// <View style={{width: '100%'}}>
-//   <Modal
-//   animationType="slide"
-//   transparent={false}
-//   item={photo}
-//   visible ={this.state.showMe}
-//   onRequestClose = {() => console.warn("this is a close request")}>
-//
-//     <View>
-//       <Text>
-//         Hey, modal is open now
-//       </Text>
-//
-//
-//       <TouchableOpacity
-//         onPress = {() =>
-//           this.setState({
-//             showMe: false
-//           })
-//         }
-//       >
-//         <Text style = { styles.closeText }>창닫기</Text>
-//       </TouchableOpacity>
-//     </View>
-//
-//
-//   </Modal>
-//
-//
-//   <TouchableOpacity
-//     onPress = {() =>
-//       this.setState({
-//         showMe: true,
-//       })
-//     }
-//   >
-//     <Text style = { styles.openText }>첫째날</Text>
-//   </TouchableOpacity>
-//
-//
-//
-//
-//   <Modal visible ={this.state.showMe} onRequestClose = {() => console.warn("this is a close request")}>
-//     <View style = { styles.modalView }>
-//       <Text>
-//         Hey, modal is open now
-//       </Text>
-//
-//       <TouchableOpacity
-//         onPress = {() =>
-//           this.setState({
-//             showMe: false
-//           })
-//         }
-//       >
-//         <Text style = { styles.closeText }>창닫기</Text>
-//       </TouchableOpacity>
-//     </View>
-//   </Modal>
-//
-//
-//   <TouchableOpacity
-//     onPress = {() =>
-//       this.setState({
-//         showMe: true
-//       })
-//     }
-//   >
-//     <Text style = { styles.openText }>둘째날</Text>
-//   </TouchableOpacity>
-//
-//
-//
-//
-//
-//   <Modal visible ={this.state.showMe} onRequestClose = {() => console.warn("this is a close request")}>
-//     <View style = { styles.modalView }>
-//       <Text>
-//         Hey, modal is open now
-//       </Text>
-//
-//       <TouchableOpacity
-//         onPress = {() =>
-//           this.setState({
-//             showMe: false
-//           })
-//         }
-//       >
-//         <Text style = { styles.closeText }>창닫기</Text>
-//       </TouchableOpacity>
-//     </View>
-//   </Modal>
-//
-//
-//   <TouchableOpacity
-//     onPress = {() =>
-//       this.setState({
-//         showMe: true
-//       })
-//     }
-//   >
-//     <Text style = { styles.openText }>셋째날</Text>
-//   </TouchableOpacity>
-
+import { Marker } from "react-native-nmap";
+import { Polyline } from "react-native-nmap";
 
 class New_Tour_Map extends React.Component {
 
-  constructor(){
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      showMe:false,
-
+      user: this.props.navigation.getParam('user'),
+      record_id: this.props.navigation.getParam('record_id'),
+      record: this.props.navigation.getParam('data'),
+      daily: [],
+      loading: false
     }
   }
 
+  componentWillMount(){
+    var arr = []
+    for (var i = 0; i < this.state.record.period; i++) {
+      var temp = this.dailyLilst(i);
+      this.setState({
+        daily: this.state.daily.concat(temp)
+      })
+    }
+  }
 
-  go_to_main(){
+  componentDidMount() {
+    this.setState({
+      loading: true
+    })
+  }
 
+  go_to_main() {
     this.props.navigation.navigate('home');
   }
 
-  go_to_daily_page(photo, review){
-    //날짜별로 데이터를 여기서 넘기나???
-    //review를 날짜별로 나누거나 해야할듯...아직 어떻게 할지 모르겠어!!! 일단은 리뷰를 받아오면 통채로 넘겨주는 식으로 구현 해놧어!
-    console.log('new page review', review)
-    this.props.navigation.navigate('daily', {'photo': photo, 'review': review});
+  go_to_daily_page(photo, review) {
+    this.props.navigation.navigate('daily', { 'photo': photo, 'review': review, 'user': this.state.user });
   }
 
-
-  press_marker(n){
-    // your code here
-    console.log("누름!!", n);
+  photoList = () => {
+    let photo_arr = []
+    for (i in this.state.record.photo) {
+      photo_arr.push(
+        <Marker
+          coordinate={{ latitude: this.state.record.photo[i]["latitude"], longitude: this.state.record.photo[i]["longitude"] }}
+          anchor={{ x: 0.5, y: 1 }}
+          caption={this.state.record.review[i].review[0]}
+          subcaption={this.state.record.review[i].review[1]}
+        />
+      )
+    }
+    return photo_arr
   }
 
+  dailyLilst = async(index) => {
+    var date = await new Date(Date.parse(this.state.record.start_date))
+    date.setDate(date.getDate() + index);
 
+    let daily_arr = {
+      photo: [],
+      review: []
+    }
+
+    for (i in this.state.record.photo) {
+      var photo_date = await new Date(Date.parse(this.state.record.photo[i].timestamp));
+
+      if (photo_date.getMonth() == date.getMonth() && photo_date.getDate() == date.getDate()) {
+        daily_arr.photo.push(this.state.record.photo[i])
+        daily_arr.review.push(this.state.record.review[i].review)
+      }
+    }
+    return daily_arr
+  }
+
+  tourDayList = async () => {
+    let day_arr = []
+    const days = ["첫째날", "둘째날", "셋째날", "넷째날", "다섯째날", "여섯째날", "일곱째날", "여덟째날", "아홉째날"]
+    for (var i = 0; i < this.state.record.period; i++) {
+      var d_list = this.dailyLilst(i)
+
+      day_arr.push(
+        <TouchableOpacity
+          onPress={() => this.go_to_daily_page(d_list.photo, d_list.review)}
+        >
+          <Text style={styles.openText}>{days[i]}</Text>
+        </TouchableOpacity>
+      )
+    }
+    return day_arr
+  }
 
   render() {
 
-    // <Image style = {{width:300, height: 300}} source={{isStatic:true, uri: 'file://' + photo[0]['path']}} />
-    //
-    // <Image style = {{width:300, height: 300}} source={{isStatic:true, uri: 'file://' + photo[1]['path']}} />
-    //
-    // <Image style = {{width:300, height: 300}} source={{isStatic:true, uri: 'file://' + photo[2]['path']}} />
-
-
     const { heading, input, parent } = styles;
 
-    const photo = this.props.navigation.getParam('photo');
-    const review = this.props.navigation.getParam('review');
-    const picture_num = this.props.navigation.getParam('picture_num');
-
-    arr = []
-    for(i=0; i<picture_num; i++) {
-      arr.push({latitude: photo[i]['latitude'], longitude: photo[i]['longitude']});
-    }
-
-    console.log('arr',arr);
-    //[{latitude: photo[0]['latitude'], longitude: photo[0]['longitude']}, {latitude: photo[1]['latitude'], longitude: photo[1]['longitude']}, {latitude: photo[2]['latitude'], longitude: photo[2]['longitude']}]
-    console.log("photo:" , photo)
-    //  image = {{isStatic:true, uri: 'file://' + photo[0]['path'], width:30}}
-    //<Image style={{width: '30', height: '30' }} source={{isStatic:true, uri: 'file://' + photo[0]['path']}}
-    //<Image style={{width: '30', height: '30' }} source={{isStatic:true, uri: 'file://' + photo[0]['path']}} />
-//  image =  {{isStatic:true, uri: 'file://' + photo[0]['path'], wid}
     return (
+
+      <View>
+        <NaverMapView style={{ width: '100%', height: '70%', zIndex: 0 }}
+          center={{ latitude: this.state.record.photo[0].latitude, longitude: this.state.record.photo[0].longitude }}
+        >
+          {this.photoList()}
+
+          <Polyline coordinates={this.state.geodata}
+            strokeWidth={3}
+            strokeColor={"blue"}></Polyline>
+
+        </NaverMapView>
+
         <View>
-            <NaverMapView style={{width: '100%', height: '70%', zIndex: 0 }}
-              center={{latitude: photo[0]['latitude'], longitude: photo[0]['longitude']}}
-            >
-              {photo[0] && (
+          {this.state.loading?(this.tourDayList()):(<Text>로딩중</Text>)}
 
-                  <Marker
-                    coordinate= {{latitude: photo[0]['latitude'], longitude: photo[0]['longitude']}}
-                      anchor ={{x:0.5, y:1}}
-                      onPress = {this.press_marker(1)}
-                      caption = {review[0]['review'][0]}
-                      subcaption = {review[0]['review'][1]}
-
-                      // image =  {{isStatic:true, uri: 'file://' + photo[0]['path']}}
-                  />
-              )}
-
-              {photo[1] && (
-                  <Marker coordinate= {{latitude: photo[1]['latitude'], longitude: photo[1]['longitude']}}
-                    anchor ={{x:0.5, y:1}}
-                    flat =  {true}
-                    caption = {review[1]['review'][0]}
-                    subcaption = {review[1]['review'][1]}
-
-                   />
-              )}
-
-              {photo[2] && (
-                  <Marker coordinate= {{latitude: photo[2]['latitude'], longitude: photo[2]['longitude']}}
-                    anchor ={{x:0.5, y:1}}
-                    flat =  {true}
-                    caption = {review[2]['review'][0]}
-                    subcaption = {review[2]['review'][1]}
-                   />
-              )}
-
-              {photo[3] && (
-                  <Marker coordinate= {{latitude: photo[3]['latitude'], longitude: photo[3]['longitude']}}
-                    anchor ={{x:0.5, y:1}}
-                    flat =  {true}
-                    caption = {review[3]['review'][0]}
-                    subcaption = {review[3]['review'][1]}
-                   />
-              )}
-
-
-              {photo[4] && (
-                  <Marker coordinate= {{latitude: photo[4]['latitude'], longitude: photo[4]['longitude']}}
-                    anchor ={{x:0.5, y:1}}
-                    flat =  {true}
-                    caption = {review[4]['review'][0]}
-                    subcaption = {review[4]['review'][1]}
-                   />
-              )}
-
-              {photo[5] && (
-                  <Marker coordinate= {{latitude: photo[5]['latitude'], longitude: photo[5]['longitude']}}
-                    anchor ={{x:0.5, y:1}}
-                    flat =  {true}
-                    caption = {review[5]['review'][0]}
-                    subcaption = {review[5]['review'][1]}
-                   />
-              )}
-
-              {photo[6] && (
-                  <Marker coordinate= {{latitude: photo[6]['latitude'], longitude: photo[6]['longitude']}}
-                    anchor ={{x:0.5, y:1}}
-                    flat =  {true}
-                    caption = {review[6]['review'][0]}
-                    subcaption = {review[6]['review'][1]}
-                   />
-              )}
-
-              {photo[7] && (
-                  <Marker coordinate= {{latitude: photo[7]['latitude'], longitude: photo[7]['longitude']}}
-                    anchor ={{x:0.5, y:1}}
-                    flat =  {true}
-                    caption = {review[7]['review'][0]}
-                    subcaption = {review[7]['review'][1]}
-                   />
-              )}
-
-              {photo[8] && (
-                  <Marker coordinate= {{latitude: photo[8]['latitude'], longitude: photo[8]['longitude']}}
-                    anchor ={{x:0.5, y:1}}
-                    flat =  {true}
-                    caption = {review[8]['review'][0]}
-                    subcaption = {review[8]['review'][1]}
-                   />
-              )}
-
-              {photo[9] && (
-                  <Marker coordinate= {{latitude: photo[9]['latitude'], longitude: photo[10]['longitude']}}
-                    anchor ={{x:0.5, y:1}}
-                    flat =  {true}
-                    caption = {review[9]['review'][0]}
-                    subcaption = {review[9]['review'][1]}
-                   />
-              )}
-
-              <Polyline coordinates= {arr}
-                strokeWidth= {3}
-                strokeColor= {"blue"}></Polyline>
-
-            </NaverMapView>
-
-
-            <View>
-              <TouchableOpacity
-                  onPress = {()=> this.go_to_daily_page(photo, review) }
-                 >
-                   <Text style = { styles.openText }>첫째날</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                  onPress = {()=> this.go_to_daily_page() }
-                 >
-                   <Text style = { styles.openText }>첫째날</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                  onPress = {()=> this.go_to_daily_page() }
-                 >
-                   <Text style = { styles.openText }>첫째날</Text>
-              </TouchableOpacity>
-
-
-
-              <Button title = {"홈으로 가기"} onPress={() => this.go_to_main() } style={ styles.button } />
-            </View>
-
-
-
-
-
-
-
+          <Button title={"홈으로 가기"} onPress={() => this.go_to_main()} style={styles.button} />
         </View>
+      </View>
     );
-
-
   }
 }
 
