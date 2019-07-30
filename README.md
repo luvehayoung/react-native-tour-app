@@ -23,7 +23,7 @@
 
 
 ## 사진을 추가한 이후에 지도위에 경로를 생성하고, 사진마다 각각의 리뷰를 볼수 있게 구현
-![](MapAndPicture.gif)
+![](MapAndPicture.gif | width=100)
 
 
 
