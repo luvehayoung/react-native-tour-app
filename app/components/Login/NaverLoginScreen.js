@@ -156,12 +156,9 @@ export class NaverLoginScreen extends Component {
                     <Text>일반 회원 로그인</Text>
                 </TouchableOpacity>
 
-
 				<TouchableOpacity onPress={() => this.sign_up() } style={ styles.button }>
                 	<Text>일반 회원 가입</Text>
                 </TouchableOpacity>
-
-
 
 			</View>
 		);

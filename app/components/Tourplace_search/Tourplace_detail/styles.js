@@ -73,6 +73,15 @@ export default StyleSheet.create({
     scroll:{
       flex: 1,
       flexDirection: 'column',
+    },
+    titleText: {
+      fontSize: 15,
+      fontWeight: 'bold',
+    },
+    MaintitleText: {
+      fontSize: 25,
+      fontWeight: 'bold',
+      alignItems: 'center',
     }
 
 })

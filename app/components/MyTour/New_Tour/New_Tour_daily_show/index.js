@@ -2,8 +2,6 @@
 
 import React from "react";
 import { Dimensions, ScrollView, Image, View, Text, Button, TextInput, TouchableOpacity } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
-import NaverLogin from 'react-native-ccs-naver-login';
 import styles from './styles'
 import Swiper from 'react-native-swiper'
 
@@ -19,59 +17,45 @@ const renderPagination = (index, total, context) => {
   )
 }
 
-// <ScrollView>
-//     <Text>일지 보기</Text>
-//
-//
-//
-//
-//     <TouchableOpacity onPress={() => this.go_to_main() } style={ styles.button }>
-//       <Text>사진</Text>
-//     </TouchableOpacity>
-// </ScrollView>
-
-
 class New_Tour_daily_show extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: this.props.navigation.getParam('user'),
+      photo: this.props.navigation.getParam('photo'),
+      review: this.props.navigation.getParam('review')
+    }
+    console.log("checkcheck", this.state.review);
+  }
 
+  reviewList = () => {
+    let review_arr = []
+    for (i in this.state.photo) {
+      review_arr.push(
+        <View style={styles.slide} >
+          <Image style={styles.image} source={{ isStatic: true, uri: 'file://' + this.state.photo[i]['path'] }} />
+          <Text style={styles.image_text} numberOfLines={1}>제목: {this.state.review[i][0]}</Text>
+          <Text style={styles.image_text2} numberOfLines={1}>후기: {this.state.review[i][1]}</Text>
+        </View>
+      )
+    }
+    return review_arr
+  }
 
   render() {
     const { heading, input, parent } = styles
-    const photo = this.props.navigation.getParam('photo');
-    const review = this.props.navigation.getParam('review');
 
-    console.log("checkcheck", review);
     return (
       <Swiper
-      style={styles.wrapper}
-      renderPagination={renderPagination}
-      loop={false}
+        style={styles.wrapper}
+        renderPagination={renderPagination}
+        loop={false}
       >
-
-        <View style={styles.slide} >
-          <Image  style={styles.image} source={{isStatic:true, uri: 'file://' + photo[0]['path']}} />
-          <Text style = {styles.image_text} numberOfLines={1}>제목: {review[0]['review'][0]}</Text>
-          <Text style = {styles.image_text2} numberOfLines={1}>후기: {review[0]['review'][1]}</Text>
-        </View>
-
-        <View style={styles.slide}>
-          <Image style={styles.image} source={{isStatic:true, uri: 'file://' + photo[1]['path']}} />
-          <Text style = {styles.image_text} numberOfLines={1}>제목: {review[1]['review'][0]}</Text>
-          <Text style = {styles.image_text2} numberOfLines={1}>후기: {review[1]['review'][1]}</Text>
-        </View>
-
-
-        <View style={styles.slide} >
-          <Image style={styles.image} source={{isStatic:true, uri: 'file://' + photo[2]['path']}} />
-          <Text style = {styles.image_text} numberOfLines={1}>제목: {review[2]['review'][0]}</Text>
-          <Text style = {styles.image_text2} numberOfLines={1}>후기: {review[2]['review'][1]}</Text>
-        </View>
-
+      {this.reviewList()}
       </Swiper>
 
     );
-
-
   }
 }
 

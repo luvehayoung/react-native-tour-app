@@ -15,7 +15,7 @@ class AuthLoadingScreen extends React.Component {
 
   _bootstrapAsync = async () => {
     //로그인 정보 삭제하고 싶을 때
-    //await AsyncStorage.clear();
+    // await AsyncStorage.clear();
     const userEmail = await AsyncStorage.getItem('userEmail');
 
     if (!userEmail)

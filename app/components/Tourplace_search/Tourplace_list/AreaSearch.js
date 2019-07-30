@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button, TextInput, FlatList,TouchableHighlight,Image } from "react-native";
+import { View, Text, Button, TextInput, FlatList,TouchableHighlight,Image,ScrollView } from "react-native";
 import styles from './styles';
 import Tour from './Tour';
 
@@ -52,7 +52,7 @@ class AreaSearch extends React.Component {
   render() {
 
     return (
-        <View>
+        <ScrollView style = {styles.scroll}>
             <TextInput 
                 style = {styles.dis_btn} 
                 placeholder = {this.state.keyword} 
@@ -71,7 +71,7 @@ class AreaSearch extends React.Component {
                 refreshing = {this.state.refreshing}
                 onRefresh={this._handleRefresh}
             />
-        </View>
+        </ScrollView>
     );
   }
 }

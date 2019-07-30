@@ -38,25 +38,11 @@ class Home extends React.Component {
       this.setState({ loading: false });
     }
   }
-    /*
-	async getToken() {
-		this.setState({ loading: true });
-        NaverLogin.getAccessToken()
-          .then(token => {
-                    alert("Signed Successful\n" + JSON.stringify(token));
-          			this.setState({ loading: false });
-          		}).catch(e => {
-          		    alert("Signed Failure");
-          			console.log(e);
-          			this.setState({ loading: false });
-          		});
-	}
-    */
+
   disconnect_naver(){
     this.logout();
     this.props.navigation.navigate('naver_login');
   }
-
 
   disconnect_general(){
     this.props.navigation.navigate('naver_login');
@@ -73,19 +59,12 @@ class Home extends React.Component {
   }
 
   new_tour(){
-    this.props.navigation.navigate('new_tour');
+    this.props.navigation.navigate('new_tour',{"user":this.state.user});
   }
 
   render() {
 
     const { heading, input, parent } = styles
-
-    // //은지 여기서 네이버 api에서 받아왔던 데이터 받아온건데, 우리는 디비에 저장될거니까 어떻게 될지 모르겠구먼
-    // const itemId = this.props.navigation.getParam('email');
-    // const login_type = this.props.navigation.getParam('login_type');
-
-    //this.setState({email: JSON.stringify(itemId)})
-
 
     let disconnect = []
 
