@@ -11,12 +11,47 @@
 (https://naver.github.io/OpenSourceGuide/book/)
 
 
+
+
+
+# 작동 화면
+
+
+
+
+
+
+
+## 사진을 추가한 이후에 지도위에 경로를 생성하고, 사진마다 각각의 리뷰를 볼수 있게 구현
+![](MapAndPicture.gif)
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 추후 업데이트 예정 관련 정보
  현재 프로젝트의 미완인 부분인 UI 디자인과, 다른 사람들이 작성한 후기를 보는 것은 다음 버전에 반영될 예정입니다. 
  
  
  
- 
+
+
+
+
+
+
+
+
+
+
 # Supported modules 이 프로젝트에서 사용되는 모듈들
 
  1. React-native-nmap: https://github.com/QuadFlask/react-native-naver-map
@@ -28,9 +63,31 @@
 
 
 
+
+
+
+# 네이버 지도 api 사용 방법
+
+
+
+
+
+
+# 네이버 로그인 기능(네아로) 사용 방법
+
+
+
+
+
+
+
 ## 설치 방법 (Installation)
 
  리액트 네이티브를 설치한 후, 위의 모듈들을 모두 설치한 후 프로그램을 실행합니다
+ 
+ 
+ 
+ 
  
 
 ## 라이센스 (License)
