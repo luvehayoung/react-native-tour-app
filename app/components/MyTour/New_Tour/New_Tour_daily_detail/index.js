@@ -23,7 +23,6 @@ class New_Tour_daily_detail extends React.Component {
   go_to_main(){
     const { navigation } = this.props;
     navigation.goBack();
-    // navigation.state.params.onSelect({ selected: true});
     navigation.state.params.onReview({ review: [this.state.title, this.state.contents] });
   }
 
